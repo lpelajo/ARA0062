@@ -15,18 +15,22 @@ $id = $_SESSION["autenticado"];
 if (isset($_POST["attPost"])) {
     $text = $_POST["postText"];
     $postId = $_POST["attPost"];
-    $sql = "update `posts` set content='$text' where id='$postId'";
+    $title = $_POST["postTitle"];
+    $sql = "update `blog` set corpo='$text', titulo='$title' where id='$postId'";
     $bd->exec($sql);
     echo "  <script>
                 window.location.replace('./gerenciarPosts.php#post" . $postId . "');
             </script>
         ";
 } else if (isset($_POST["postText"])) {
+    if (isset($_POST["postTitle"])){
+        $title = $_POST["postTitle"];
+    } else {$title = '';}
     $text = $_POST["postText"];
-    $sql = "INSERT INTO `posts` (`ID`, `user_id`, `content`) VALUES (NULL, '$id', '$text')";
+    $sql = "INSERT INTO `blog` (`ID`, `user_id`, `corpo`, `titulo`) VALUES (NULL, '$id', '$text', '$title')";
     $bd->exec($sql);
     echo "   <script>
-                window.history.back();
+                window.location.replace('../index.php');
             </script>
     ";
 }

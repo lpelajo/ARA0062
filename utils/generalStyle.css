@@ -57,3 +57,9 @@
     font-family: "Klavika Bold";
     font-size: 400%;
 }
+
+.inputTitle {
+    border-width: 4px;
+    border-style: solid;
+    border-color: rgb(206, 212, 218);
+}

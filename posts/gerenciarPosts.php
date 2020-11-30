@@ -61,10 +61,11 @@ if (isset($_GET["cancel"])) {
     <div class="container-fluid">
         <h1 class="fake-color fake-title d-inline-block mt-4 ml-4" style="z-index: 10;">Meus Posts</h1>
         <?php
-        $sql = "select posts.ID, posts.content, users.login from `posts`,`users` where posts.user_id = users.ID and users.ID = " . $id . " order by posts.ID desc";
+        $sql = "select blog.ID, blog.corpo, blog.titulo, users.login from `blog`,`users` where blog.user_id = users.ID and users.ID = " . $id . " order by blog.ID desc";
         foreach ($bd->query($sql) as $row) {
             $user = $row['login'];
-            $text = $row['content'];
+            $text = $row['corpo'];
+            $titulo = $row['titulo'];
             $postID = $row['ID'];
             echo '
                 <div class="card my-3" id="post' . $postID . '" style="width: 100%;">
@@ -87,11 +88,12 @@ if (isset($_GET["cancel"])) {
                     <div class="card-body" style="padding:0.5rem;">
                         <form action="./salvarPost.php" method="post" class="form-inline">
                             <input type="hidden" name="attPost" value=' . $postID . ' class="form-control">
-                                <div class="form-group" style="width:90%;">
-                                <textarea class="form-control" id="Textarea1" name=postText rows="3" maxlength="140" required style="width: 100%; border-width: 4px; resize:none;"  >' . $text . '</textarea>
+                            <textarea class="form-control mb-2" id="Textarea2" name=postTitle rows="1" maxlength="25" style="width: 100%; border-width: 4px; resize:none;"  >' . $titulo . '</textarea>
+                            <div class="form-group" style="width:90%;">
+                                <textarea class="form-control mr-2" id="Textarea1" name=postText rows="3" maxlength="140" required style="width: 100%; border-width: 4px; resize:none;"  >' . $text . '</textarea>
                             </div>
                             <div class="form-group mx-auto" style="width:10%;">
-                                <button type="submit" class="btn btn-primary mx-auto py-4 px-1 mpbtn">Confirmar Edição</button>
+                                <button type="submit" class="btn btn-primary mx-auto py-3 px-3 bg-info">Confirmar <br> Edição</button>
                             </div>
                         </form>
                     </div>
@@ -111,7 +113,8 @@ if (isset($_GET["cancel"])) {
                         </div>
                     </div>
                     <div class="card-body">
-                        <pre class="card-text">' . $text . '</pre>
+                        <h6 class="card-subtitle mb-2 text-muted">' . $titulo . '</h6>
+                        <pre class="card-text ml-3">' . $text . '</pre>
                     </div>
                 </div>
                 ';

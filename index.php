@@ -1,11 +1,11 @@
-<!doctype html>
-
 <?php
 session_start();
 
 include_once "./servico/Bd.php";
 $bd = new Bd();
 ?>
+
+<!doctype html>
 
 <html lang="en">
 
@@ -60,27 +60,30 @@ $bd = new Bd();
       <img src="./utils/Fakebook-Logo.png" width="100%" height="auto" class="my-3" alt="" loading="lazy">
     </div>
     <?php
-    $sql = "select posts.content, users.login from `posts`,`users` where posts.user_id = users.ID order by posts.ID desc";
+    $sql = "select blog.corpo, blog.titulo, users.login from `blog`,`users` where blog.user_id = users.ID order by blog.ID desc";
     foreach ($bd->query($sql) as $row) {
       $user = $row['login'];
-      $text = $row['content'];
+      $text = $row['corpo'];
+      $titulo = $row['titulo'];
       echo '
         <div class="card my-3" style="width: 100%;">
           <div class="py-2 post-color">
             <h5 class="card-title ml-3 text-white" style="display:inline;">' . $user . '</h5>
           </div>
           <div class="card-body">
-            <pre class="card-text">' . $text . '</pre>
+            <h6 class="card-subtitle mb-2 text-muted">' . $titulo . '</h6>
+            <pre class="card-text ml-3">' . $text . '</pre>
           </div>
         </div>
       ';
     }
-    echo '<div><p class="h-100">.</p><p class="h-100">.</p><p class="h-100">.</p></div>';
+    echo '<div class="py-5 my-4"><div class="card post-color pt-3 mx-auto" style="width:33%;"><p class="card-title ml-3 text-white mx-auto">Este é o fim dos posts.</p></div></div>';
 
     if (isset($_SESSION["autenticado"])) {
       echo '
       <div class = "fixed-bottom bg-light">
       <form action="./posts/salvarPost.php" method="post" class="form-inline mb-4 ml-4">
+        <textarea class="form-control mr-4 mt-2" id="Textarea2" name=postTitle rows="1" maxlength="25" style="width: 98%; border-width: 4px; resize:none;" placeholder="Titulo"></textarea>
         <div class="form-group" style="width:90%;">
           <textarea class="form-control mt-2" id="Textarea1" name=postText rows="3" maxlength="140" required style="width: 100%; border-width: 4px; resize:none;"  ></textarea>
         </div>
