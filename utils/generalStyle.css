@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css2?family=Texturina);
+@import url(https://fonts.googleapis.com/css2?family=Goldman);
+@import url(https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica);
+@import url(https://fonts.googleapis.com/css2?family=Courgette);
+
+@font-face {
+    font-family: "Klavika Bold";
+    src: url(./klavika-bold.otf);
+}
+
+.card-title {
+    font-family: "IM Fell Double Pica","Courgette","Texturina","Goldman",sans-serif;
+    font-weight: 900;
+    font-size: 125%;
+}
+
+.dropdown-item.active {
+    background-color: #ddeeff;
+    color: black;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bdd8ff;
+}
+
+.dropdown-item:hover {
+    background-color: #bdd8ff;
+}
+
+.dropdown-menu {
+    width: a;
+}
+
+.post-dropdown {
+    padding: 0 0;
+    background-color: #f8f9fa;
+}
+
+.post-color {
+    background-color:#007bb6;
+}
+
+.post-color:hover {
+    background-color:#007bb6;
+}
+
+.post-color:focus {
+    background-color:#007bb6;
+    box-shadow: 0 0 0 0rem;
+}
+
+.fake-color {
+    color: #0078f6;
+}
+
+.fake-title {
+    font-weight: 500;
+    font-family: "Klavika Bold";
+    font-size: 400%;
+}
