@@ -23,7 +23,7 @@ $bd = new Bd();
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light sticky-top">
     <a class="navbar-brand" href="#">
       <img src="./favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
       <img src="./utils/Fakebook-Logo.png" width="auto" height="20" class="d-inline-block mt-n1" alt="" loading="lazy">
@@ -56,6 +56,7 @@ $bd = new Bd();
     ?>
   </nav>
   <div class="container-fluid">
+
     <div class="mx-auto" style="width: 33%;">
       <img src="./utils/Fakebook-Logo.png" width="100%" height="auto" class="my-3" alt="" loading="lazy">
     </div>
@@ -83,7 +84,7 @@ $bd = new Bd();
       echo '
       <div class = "fixed-bottom bg-light">
       <form action="./posts/salvarPost.php" method="post" class="form-inline mb-4 ml-4">
-        <textarea class="form-control mr-4 mt-2" id="Textarea2" name=postTitle rows="1" maxlength="25" style="width: 98%; border-width: 4px; resize:none;" placeholder="Titulo"></textarea>
+        <textarea class="form-control mr-4 mt-2" id="Textarea2" name=postTitle rows="1" maxlength="25" style="width: 98%; border-width: 4px; resize:none;" placeholder="Titulo (Opcional)"></textarea>
         <div class="form-group" style="width:90%;">
           <textarea class="form-control mt-2" id="Textarea1" name=postText rows="3" maxlength="140" required style="width: 100%; border-width: 4px; resize:none;"  ></textarea>
         </div>
@@ -92,10 +93,38 @@ $bd = new Bd();
         </div>
       </form>
       </div>
+
+      <button onclick="topFunction()" id="topBtn" class="btnTop" title="Go to top" style="bottom: 200px;">^</button>
+      ';
+    } else {
+      echo '
+      <button onclick="topFunction()" id="topBtn" class="btnTop" title="Go to top">^</button>
       ';
     }
-    ?>
 
+    echo'
+    <script>
+    var mybutton = document.getElementById("topBtn");
+
+    window.onscroll = function() {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+    ';
+    ?>
 
   </div> <!-- fim container -->
 

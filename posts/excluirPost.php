@@ -12,7 +12,7 @@ if (!isset($_SESSION["autenticado"])) {
   $bd = new Bd();
   
   $postID = $_POST["excPost"];
-  $sql = "delete from `posts` where ID = '$postID'";
+  $sql = "delete from `blog` where ID = '$postID'";
   $bd->exec($sql);
   echo '
     <script>
